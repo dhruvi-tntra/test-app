@@ -1,0 +1,16 @@
+<table>
+  <th>Name</th>
+  <th>phone</th>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.phone %></td>
+      <td><%= link_to "Edit User", edit_user_path(user) %></td>
+      <td><%= link_to "Delete User", user_path(user), 
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+    <tr>
+    <% end %>
+    </tbody>
+</table>
+<%= link_to "Add User", new_user_path %>
