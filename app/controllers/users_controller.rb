@@ -1,24 +1,24 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy, :show]
+  before_action :set_user, only: [ :edit, :update, :destroy, :show ]
   def index
-		@users = User.all
+    @users = User.all
   end
 
   def new
-		@user = User.new
+    @user = User.new
   end
 
   def create
-		@user = User.new(user_params)
-		if @user.save
-			redirect_to users_path
-		else
-			render :new
-		end
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to users_path
+    else
+      render :new
+    end
   end
 
   def edit; end
-  
+
   def show; end
 
   def update
@@ -32,15 +32,15 @@ class UsersController < ApplicationController
   def destroy
     if @user
       @user.destroy
-      redirect_to users_path, notice: 'User deleted successfully.'
+      redirect_to users_path, notice: "User deleted successfully."
     else
-      redirect_to users_path, alert: 'User not found.'
+      redirect_to users_path, alert: "User not found."
     end
   end
 
-  private 
+  private
     def user_params
-			params.require(:user).permit(:name, :phone)
+      params.require(:user).permit(:name, :phone)
     end
 
     def set_user
